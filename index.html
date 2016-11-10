@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>photowall</title>
+    <style>
+        html,body{margin: 0;padding: 0;width: 100%;height: 80%;}
+        .parent{position:relative;width: 80%;height: 100%;margin: 50px auto;}
+        .btns{width: 100%;margin: 50px auto;text-align: center;}
+        .btn{margin-left: 20px;}
+    </style>
+    <link rel="stylesheet" href="./css/photowall.css">
+</head>
+<body>
+    <div class="btns">
+        <label>顺序<input type="radio" name="isRandom" value="" checked></label>
+        <label>随机<input type="radio" name="isRandom" value="true"></label>
+        <button class="btn btn1" value="HELLO!">show "HELLO!"</button>
+        <button class="btn btn2" value="CATS">show "CATS"</button>
+        <button class="btn btn3" value="LETitGO">show "LET it GO"</button>
+    </div>
+    <div class="parent"></div>
+    <script src="./js/jquery-3.1.1.js"></script>
+    <script src="./js/photowall.js"></script>
+    <script>
+        var imgs = [];
+        for(var i = 0;i < 60;i++) {
+            imgs.push("./imgs/" + (i+1<10?"0"+(i+1):(i+1))+".jpg");
+        }
+        var photowall = new Photowall({
+            parent: $('.parent'),
+            imgs: imgs
+        });
+        $('.btns').on('click','.btn',function(){
+            photowall.showPhoto(this.value,$('input:checked')[0].value);
+        })
+        
+    </script>
+</body>
+</html>
